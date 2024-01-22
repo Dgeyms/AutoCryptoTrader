@@ -5,20 +5,20 @@ package com.example.autocryptotrader.service.botservice;
  * представляющими данные в приложении (например, модели) и объектами, сохраненными в базе данных (например, сущности).
  */
 
-import com.example.autocryptotrader.model.BotParams;
+import com.example.autocryptotrader.model.BotParameters;
 import com.example.autocryptotrader.repository.BotEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BotMapper {
 
-    public BotEntity mapToEntity(BotParams botParams){
+    public BotEntity mapToEntity(BotParameters botParameters){
         BotEntity botEntity = new BotEntity();
-        botEntity.setNameBot(botParams.getNameBot());
-        botEntity.setTradingDirection(botParams.getTradingDirection());
-        botEntity.setTokenPair(botParams.getTokenPair());
-        botEntity.setCreditLeverage(botParams.getCreditLeverage());
-        botEntity.setPercentTakeProfit(botParams.getPercentTakeProfit());
+        botEntity.setNameBot(botParameters.getNameBot());
+        botEntity.setTradingDirection(String.valueOf(botParameters.getTypeTradingDirection()));
+        botEntity.setTokenPair(botParameters.getTokenPair());
+        botEntity.setCreditLeverage(botParameters.getCreditLeverage());
+        botEntity.setPercentTakeProfit(botParameters.getPercentTakeProfit());
         botEntity.setDollarOrderVolume(botEntity.getDollarOrderVolume());
         return botEntity;
     }

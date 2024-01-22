@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bot create</title>
+</head>
+
+<body>
+<h1>Bot parameters</h1>
+
+<form method="POST" th.object="${bot}"><!--Этот атрибут th:object указывает Thymeleaf, что данные формы должны быть связаны с объектом, который находится в модели под именем "bot"-->
+    <div th:each="botParameters : ${botParametersList}">
+        <div>
+            <p>Name: <span th:text="${botParameters.nameBot}"></span></p>
+            <input type="text" th:field="*{nameBot}" />
+
+            <p>Trading Direction: <span th:text="${botParameters.typeTradingDirection}"></span></p>
+            <select th:field="*{typeTradingDirection}">
+                <option th:each="direction : ${T(com.example.autocryptotrader.model.BotParameters$TypeTradingDirection).values()}"
+                        th:value="${direction}" th:text="${direction}"></option>
+            </select>
+            <p>Token Pair: <span th:text="${botParameters.tokenPair}"></span></p>
+            <p>Credit Leverage: <span th:text="${botParameters.creditLeverage}"></span></p>
+            <p>Percent Take Profit: <span th:text="${botParameters.percentTakeProfit}"></span></p>
+            <p>Dollar Order Volume: <span th:text="${botParameters.dollarOrderVolume}"></span></p>
+            <hr/>
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+<form>
+    <div class="grid">
+        <div class="parameters-bot" id="parameters">
+            <h3>Parameters bot</h3>
+            <div th:each="botParameters : ${botParametersList}">
+                <input th:field="*{botParametersList}" type="checkbox" th:value="${botParameters.nameBot}"/>
+                <span th:text="${botParameters.getNameBot()}">botParameter</span><br/>
+            </div>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>
+

@@ -1,6 +1,6 @@
 package com.example.autocryptotrader.service.botservice;
 
-import com.example.autocryptotrader.model.BotParams;
+import com.example.autocryptotrader.model.BotParameters;
 import com.example.autocryptotrader.repository.BotEntity;
 import com.example.autocryptotrader.repository.BotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,8 @@ public class BotServiceImpl implements BotService {
         this.botMapper = botMapper;
     }
 
-    public void saveBotInDatabase(BotParams botParams) {
-        BotEntity botEntity = botMapper.mapToEntity(botParams);
+    public void saveBotInDatabase(BotParameters botParameters) {
+        BotEntity botEntity = botMapper.mapToEntity(botParameters);
         botRepository.save(botEntity);
     }
 }

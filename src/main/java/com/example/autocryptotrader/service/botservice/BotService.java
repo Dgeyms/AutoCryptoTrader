@@ -1,7 +1,7 @@
 package com.example.autocryptotrader.service.botservice;
 
-import com.example.autocryptotrader.model.BotParams;
+import com.example.autocryptotrader.model.BotParameters;
 
 public interface BotService {
-    void saveBotInDatabase(BotParams botParams);
+    void saveBotInDatabase(BotParameters botParameters);
 }
