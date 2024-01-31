@@ -69,6 +69,13 @@
 			<version>2.2.224</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-hal-browser -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+			<version>3.3.9.RELEASE</version>
+		</dependency>
+
 
 	</dependencies>
 
