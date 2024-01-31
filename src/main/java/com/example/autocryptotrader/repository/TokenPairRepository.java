@@ -1,10 +1,18 @@
 package com.example.autocryptotrader.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Component
+@Repository
 public interface TokenPairRepository extends JpaRepository<PairTokenEntity, Long> {
-    List<String> getTokenPairFromDatabase();
+
+    // Если вам нужны только имена токенов
+   @Query("SELECT p.nameTokenPair FROM PairTokenEntity")
+   List<String> findAllTokenNames();
+
+    // Стандартный метод findAll() для получения всех записей
+    List<PairTokenEntity> findAll();
+
 }

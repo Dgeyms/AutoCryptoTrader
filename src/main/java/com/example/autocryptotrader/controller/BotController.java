@@ -15,6 +15,7 @@ import java.util.List;
 public class BotController {
     private BotParametersService botParametersService;
     @ModelAttribute("tokenPair")
+    @GetMapping("/bot/tokenPair")
     public List<String> addListPairTokenInModel(){
         return botParametersService.getPairTokenFromDataBase();
     }

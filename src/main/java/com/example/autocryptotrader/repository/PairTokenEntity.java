@@ -10,8 +10,8 @@ import java.util.List;
 public class PairTokenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @ElementCollection
-    private List<String> pairTokenList;
+    @Column(name = "name_token_pair")
+    private String nameTokenPair;
 }
