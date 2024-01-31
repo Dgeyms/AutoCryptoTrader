@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Component
-public class BotParameters {
+public class BotParametersModel {
     private Long id;
     private String nameBot;
     private List<String> tokenPair; // from database
@@ -20,10 +20,6 @@ public class BotParameters {
 
     public enum TypeTradingDirection {
         LONG, SHORT
-    }
-    @Autowired
-    public BotParameters(TokenPairRepository tokenPairRepository) {
-        this.tokenPair = tokenPairRepository.getTokenPairFromDatabase();
     }
 }
 

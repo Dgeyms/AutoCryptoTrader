@@ -1,23 +1,29 @@
 package com.example.autocryptotrader.controller;
 
 import com.example.autocryptotrader.model.Bot;
-import com.example.autocryptotrader.model.BotParameters;
+import com.example.autocryptotrader.repository.PairTokenEntity;
 import com.example.autocryptotrader.service.botservice.BotParametersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 @RequestMapping("/bot")
 public class BotController {
-    private BotParametersService botParametersService;
-    @ModelAttribute("tokenPair")
+    private final BotParametersService botParametersService;
+    @Autowired
+    public BotController(BotParametersService botParametersService) {
+        this.botParametersService = botParametersService;
+    }
+
     @GetMapping("/bot/tokenPair")
-    public List<String> addListPairTokenInModel(){
-        return botParametersService.getPairTokenFromDataBase();
+    public String addListPairTokenInModel(Model model){
+        List<PairTokenEntity> pairTokenList = botParametersService.getPairTokenFromDataBase();
+        model.addAttribute("tokenPair", pairTokenList);
+        return "parametersBot";
     }
 
     @GetMapping
