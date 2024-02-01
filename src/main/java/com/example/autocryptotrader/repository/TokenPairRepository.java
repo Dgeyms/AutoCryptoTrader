@@ -12,7 +12,4 @@ public interface TokenPairRepository extends JpaRepository<PairTokenEntity, Long
    @Query("SELECT p.nameTokenPair FROM PairTokenEntity")
    List<String> findAllTokenNames();
 
-    // Стандартный метод findAll() для получения всех записей
-    List<PairTokenEntity> findAll();
-
 }

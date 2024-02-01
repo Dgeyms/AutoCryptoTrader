@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface BotParametersService {
-    List<PairTokenEntity> getPairTokenFromDataBase();
+    List<String> getPairTokenFromDataBase();
 }

@@ -16,7 +16,7 @@ public class BotParametersServiceImpl implements BotParametersService {
     }
 
     @Override
-    public List<PairTokenEntity> getPairTokenFromDataBase() {
-        return tokenPairRepository.findAll();
+    public List<String> getPairTokenFromDataBase() {
+        return tokenPairRepository.findAllTokenNames();
     }
 }

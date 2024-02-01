@@ -1,8 +1,6 @@
 package com.example.autocryptotrader.model;
 
-import com.example.autocryptotrader.repository.TokenPairRepository;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 public class BotParametersModel {
     private Long id;
     private String nameBot;
-    private List<String> tokenPair; // from database
+    private List<String> nameTokenPair; // from database
     private TypeTradingDirection typeTradingDirection; // направление торговли
     private int creditLeverage;
     private double percentTakeProfit;
