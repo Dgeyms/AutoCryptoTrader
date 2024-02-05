@@ -26,6 +26,12 @@ public class BotController {
         return "parametersBot";
     }
 
+    @PostMapping("/bot/parametersBot")
+    public String receiveBotParameters(@RequestBody BotParameters botParameters){
+
+        return "Parameters bot add in database OK";
+    }
+
     @GetMapping
     public String showDesignForm(){
         return "parametersBot";
