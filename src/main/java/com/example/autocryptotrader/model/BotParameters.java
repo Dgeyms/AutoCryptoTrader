@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Component
-public class BotParametersModel {
+public class BotParameters {
     private Long id;
     private String nameBot;
     private List<String> nameTokenPair; // from database

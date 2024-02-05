@@ -1,6 +1,8 @@
 package com.example.autocryptotrader.controller;
 
 import com.example.autocryptotrader.model.Bot;
+import com.example.autocryptotrader.model.BotParameters;
+import com.example.autocryptotrader.repository.PairTokenEntity;
 import com.example.autocryptotrader.model.BotParametersModel;
 import com.example.autocryptotrader.service.botservice.BotParametersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,11 @@ public class BotController {
         model.addAttribute("tokenPair", pairTokenList);
         model.addAttribute("botParametersModel", new BotParametersModel());
         return "parametersBot";
+    }
+
+    @PostMapping("/bot/parametersBot")
+    public void receiveBotParameters(@RequestBody BotParameters botParameters){
+        botParametersService.addNameBotInDataBase(botParameters.getNameBot());
     }
 
     @GetMapping
