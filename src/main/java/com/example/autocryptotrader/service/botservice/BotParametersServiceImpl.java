@@ -18,10 +18,6 @@ public class BotParametersServiceImpl implements BotParametersService {
         this.botNameRepository = botNameRepository;
     }
 
-    @Override
-    public List<String> getPairTokenFromDataBase() {
-        return tokenPairRepository.findAllTokenNames();
-    }
 
     @Override
     public void addNameBotInDataBase(String botName){

@@ -1,10 +1,10 @@
 package com.example.autocryptotrader.service.botservice;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public interface BotFormsService {
 
     List<String> getPairTokenFromDataBase();
