@@ -6,7 +6,12 @@
 </head>
 
 <body>
-    <h1>Create bot</h1>
+    <h3>Create bot</h3>
+    <p></p>
+    <form action="bot/parametersBot" method="post">
+        <input type="text" th:name="botName">
+        <input type="submit" value="Submit">
+    </form>
     <!--
     <form method="POST" th.object="${bot}"> Этот атрибут th:object указывает Thymeleaf, что данные формы должны быть связаны с объектом,
     который находится в модели под именем "bot"
@@ -31,18 +36,18 @@
         </div>
         <button type="submit">Submit</button>
     </form>
-    -->
-    <form method="GET" th.object="${botParametersModel}"><!--Этот атрибут th:object указывает Thymeleaf, что данные формы должны быть связаны с объектом,
-    который находится в модели под именем "tokenPair"-->
 
-                <!-- pairToken parameters -->
+    <form method="GET" th.object="${botParametersModel}">Этот атрибут th:object указывает Thymeleaf, что данные формы должны быть связаны с объектом,
+    который находится в модели под именем "tokenPair"
+
+                <pairToken parameters
                 <p>Trading pair tokens: <span th:text="${botParametersModel.nameTokenPair}"></span></p>
                 <select th:field="*{nameTokenPair}">
                     <option th:each="pairToken : ${(pairTokenList}"
                             th:text="${pairToken}" th:value="${pairToken}"></option>
                 </select>
     </form>
-    <!--
+
     <form>
         <div class="grid">
             <div class="parameters-bot" id="parameters">

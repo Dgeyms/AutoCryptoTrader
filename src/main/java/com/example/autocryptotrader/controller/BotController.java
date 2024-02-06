@@ -2,8 +2,6 @@ package com.example.autocryptotrader.controller;
 
 import com.example.autocryptotrader.model.Bot;
 import com.example.autocryptotrader.model.BotParameters;
-import com.example.autocryptotrader.repository.PairTokenEntity;
-import com.example.autocryptotrader.model.BotParameters;
 import com.example.autocryptotrader.service.botservice.BotParametersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,7 @@ public class BotController {
         this.botParametersService = botParametersService;
     }
 
-    @PostMapping("/bot/parametersBot")
+    @PostMapping("/parametersBot")
     public void receiveBotParameters(@RequestBody BotParameters botParameters){
         botParametersService.addNameBotInDataBase(botParameters.getNameBot());
     }

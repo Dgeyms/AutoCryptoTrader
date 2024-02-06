@@ -10,11 +10,9 @@ import java.util.List;
 
 @Service
 public class BotParametersServiceImpl implements BotParametersService {
-    private final TokenPairRepository tokenPairRepository;
     private final BotNameRepository botNameRepository;
     @Autowired
-    public BotParametersServiceImpl(TokenPairRepository tokenPairRepository, BotNameRepository botNameRepository) {
-        this.tokenPairRepository = tokenPairRepository;
+    public BotParametersServiceImpl(BotNameRepository botNameRepository) {
         this.botNameRepository = botNameRepository;
     }
 
@@ -22,5 +20,5 @@ public class BotParametersServiceImpl implements BotParametersService {
     @Override
     public void addNameBotInDataBase(String botName){
         botNameRepository.save(botName);
-    };
+    }
 }
