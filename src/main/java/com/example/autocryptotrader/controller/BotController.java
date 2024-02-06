@@ -3,7 +3,7 @@ package com.example.autocryptotrader.controller;
 import com.example.autocryptotrader.model.Bot;
 import com.example.autocryptotrader.model.BotParameters;
 import com.example.autocryptotrader.repository.PairTokenEntity;
-import com.example.autocryptotrader.model.BotParametersModel;
+import com.example.autocryptotrader.model.BotParameters;
 import com.example.autocryptotrader.service.botservice.BotParametersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,20 +19,6 @@ public class BotController {
     @Autowired
     public BotController(BotParametersService botParametersService) {
         this.botParametersService = botParametersService;
-    }
-
-    @GetMapping("/tokenPair")
-    public String addListPairTokenInModel(Model model){
-        List<String> pairTokenList = botParametersService.getPairTokenFromDataBase();
-        if(pairTokenList.isEmpty()){
-            return "Error no tokenPair";
-        }
-        for (String listToken : pairTokenList){
-            System.out.println("Котировки из базы данных: " + listToken);
-        }
-        model.addAttribute("tokenPair", pairTokenList);
-        model.addAttribute("botParametersModel", new BotParametersModel());
-        return "parametersBot";
     }
 
     @PostMapping("/bot/parametersBot")
