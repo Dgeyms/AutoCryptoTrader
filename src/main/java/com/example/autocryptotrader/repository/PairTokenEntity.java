@@ -3,7 +3,6 @@ package com.example.autocryptotrader.repository;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
 
 @Data
 @Entity
