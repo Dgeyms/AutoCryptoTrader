@@ -1,18 +1,17 @@
 package com.example.autocryptotrader.controller;
 
-import com.example.autocryptotrader.service.botservice.BotParametersService;
+import com.example.autocryptotrader.service.botservice.BotParametersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping(value = "/bot")
 public class BotController {
-    private final BotParametersService botParametersService;
+    private final BotParametersServiceImpl botParametersServiceImpl;
     @Autowired
-    public BotController(BotParametersService botParametersService) {
-        this.botParametersService = botParametersService;
+    public BotController(BotParametersServiceImpl botParametersServiceImpl) {
+        this.botParametersServiceImpl = botParametersServiceImpl;
     }
 
     @GetMapping("/hello")
@@ -20,11 +19,10 @@ public class BotController {
         return "Hello";
     }
 
-    @PostMapping("parametersBot")
+    @PostMapping("/parametersBot")
     public String receiveBotParameters(@RequestParam("botName") String botName){
-        botParametersService.addNameBotInDataBase(botName);
+        botParametersServiceImpl.addNameBotInDataBase(botName);
         return "Bot created successfully!";
     }
-
-
+   // проверка git (сообщение принято)
 }
