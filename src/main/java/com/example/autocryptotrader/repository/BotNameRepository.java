@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BotNameRepository extends JpaRepository<BotEntity, Long> {
 
-    BotEntity save (String botName);
+    BotEntity save(String botName);
+
+    boolean searchBotInDatabase(String botName);
 
 }

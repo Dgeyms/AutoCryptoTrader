@@ -9,4 +9,5 @@ import java.util.List;
 public interface BotParametersService {
 
     void addNameBotInDataBase(String botName);
+    boolean searchBotInDatabase(String botName);
 }

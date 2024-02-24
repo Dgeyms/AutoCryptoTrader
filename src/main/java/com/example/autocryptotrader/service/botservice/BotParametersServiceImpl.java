@@ -20,4 +20,9 @@ public class BotParametersServiceImpl implements BotParametersService {
     public void addNameBotInDataBase(String botName) {
         botNameRepository.save(botName);
     }
+
+    @Override
+    public boolean searchBotInDatabase(String botName) {
+        return botNameRepository.searchBotInDatabase(botName);
+    }
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Data
-@Component
 public class Bot {
     private String nameBot;
     private List<BotParameters> botParametersList;
