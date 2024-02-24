@@ -1,28 +1,35 @@
 package com.example.autocryptotrader.controller;
 
+import com.example.autocryptotrader.model.Bot;
 import com.example.autocryptotrader.service.botservice.BotParametersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
-@RequestMapping(value = "/bot")
+@RequestMapping("/bot")
 public class BotController {
     private final BotParametersServiceImpl botParametersServiceImpl;
+
     @Autowired
     public BotController(BotParametersServiceImpl botParametersServiceImpl) {
         this.botParametersServiceImpl = botParametersServiceImpl;
     }
 
     @GetMapping("/hello")
-    public String getHello(){
-        return "Hello";
+    public String getHello() {
+        return "Hello word";
     }
 
     @PostMapping("/parametersBot")
-    public String receiveBotParameters(@RequestParam("botName") String botName){
-        botParametersServiceImpl.addNameBotInDataBase(botName);
-        return "Bot created successfully!";
+    public String receiveBotParameters(
+            Model model,
+            @RequestParam("botName") String botName) {
+        Bot bot = new Bot(botName);
+        model.addAttribute("bot", bot);
+        botParametersServiceImpl.addNameBotInDataBase(bot.getNameBot());
+        model.addAttribute("message", "Bot successfully added to the database");
+        return "bots"; // Замените "someView" на имя представления, к которому вы хотите перенаправиться
     }
-   // проверка git (сообщение принято)
 }
+// проверка git (сообщение принято)

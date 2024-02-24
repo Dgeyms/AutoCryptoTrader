@@ -11,14 +11,13 @@ import java.util.List;
 @Service
 public class BotParametersServiceImpl implements BotParametersService {
     private final BotNameRepository botNameRepository;
+
     @Autowired
     public BotParametersServiceImpl(BotNameRepository botNameRepository) {
         this.botNameRepository = botNameRepository;
     }
-
-
     @Override
-    public void addNameBotInDataBase(String botName){
+    public void addNameBotInDataBase(String botName) {
         botNameRepository.save(botName);
     }
 }
