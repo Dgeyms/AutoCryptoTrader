@@ -27,7 +27,7 @@ class BotNameRepositoryTest {
 
         botParametersService.addNameBotInDataBase(nameBot);
 
-        verify(botNameRepository, times(1)).save(nameBot);
+        verify(botNameRepository, times(1)).save(botNameEntity);
     }
 
     @Test

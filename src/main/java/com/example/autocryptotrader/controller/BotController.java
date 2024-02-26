@@ -24,8 +24,10 @@ public class BotController {
     @PostMapping("/parametersBot")
     public String receiveBotParameters(
             Model model,
-            @RequestParam("botName") String botName) {
-        if (false == searchBotInDatabase(botName)) {
+            @RequestParam(value = "botName", required = false) String botName) {
+        if(botName == null || botName.isEmpty()){
+            return "Error: Bot name is missing_s";
+        }else if (false == searchBotInDatabase(botName)) {
             Bot bot = new Bot(botName);
             model.addAttribute("bot", bot);
             botParametersServiceImpl.addNameBotInDataBase(bot.getNameBot());
