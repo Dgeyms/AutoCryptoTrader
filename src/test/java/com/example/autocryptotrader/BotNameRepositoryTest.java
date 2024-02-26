@@ -21,23 +21,33 @@ class BotNameRepositoryTest {
     private BotParametersServiceImpl botParametersService;
 
     @Test
+    void testSaveNameBotInDatabase(){
+        String nameBot = "ARB/USDT";
+        doNothing().when(botNameRepository).save(nameBot);
+
+        botParametersService.addNameBotInDataBase(nameBot);
+
+        verify(botNameRepository, times(1)).save(nameBot);
+    }
+
+    @Test
     void testSearchBotInDatabase_ExistingBot() {
         String botName = "TestBot";
-        when(botNameRepository.searchBotInDatabase(botName)).thenReturn(true);
+        when(botNameRepository.existsByBotName(botName)).thenReturn(true);
 
         boolean result = botParametersService.searchBotInDatabase(botName);
 
         assertTrue(result);
-        verify(botNameRepository, times(1)).searchBotInDatabase(botName);
+        verify(botNameRepository, times(1)).existsByBotName(botName);
     }
     @Test
     void testSearchBotInDatabase_NonExistingBot(){
         String botName = "NonExistingBot";
-        when(botNameRepository.searchBotInDatabase(botName)).thenReturn(false);
+        when(botNameRepository.existsByBotName(botName)).thenReturn(false);
 
         boolean result = botParametersService.searchBotInDatabase(botName);
 
         assertFalse(result);
-        verify(botNameRepository, times(1)).searchBotInDatabase(botName);
+        verify(botNameRepository, times(1)).existsByBotName(botName);
     }
 }

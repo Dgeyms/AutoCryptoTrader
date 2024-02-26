@@ -8,12 +8,12 @@ import jakarta.persistence.Id;
 import lombok.Data;
 @Data
 @Entity
-public class BotEntity {
+public class BotNameEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "bot_name")
-    private String nameBot;
+    private String botName;
 
 }

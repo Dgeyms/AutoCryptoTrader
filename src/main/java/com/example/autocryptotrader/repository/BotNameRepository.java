@@ -4,10 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BotNameRepository extends JpaRepository<BotEntity, Long> {
+public interface BotNameRepository extends JpaRepository<BotNameEntity, Long> {
 
-    BotEntity save(String botName);
+    void save(String botName);
 
-    boolean searchBotInDatabase(String botName);
-
+    boolean existsByBotName(String botName);
 }

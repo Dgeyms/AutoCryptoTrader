@@ -25,18 +25,19 @@ public class BotController {
     public String receiveBotParameters(
             Model model,
             @RequestParam("botName") String botName) {
-        if(false == searchBotInDatabase(botName)){
+        if (false == searchBotInDatabase(botName)) {
             Bot bot = new Bot(botName);
             model.addAttribute("bot", bot);
             botParametersServiceImpl.addNameBotInDataBase(bot.getNameBot());
             model.addAttribute("message", "Bot successfully added to the database");
             return "bots"; // Замените "someView" на имя представления, к которому вы хотите перенаправиться
-        }else{
-            return "Error: Bot with name" + botName + "in database";
+        } else {
+            return "Bot with name" + botName + " OK in database";
         }
 
     }
-    private Boolean searchBotInDatabase(String botName){
+
+    private Boolean searchBotInDatabase(String botName) {
         return botParametersServiceImpl.searchBotInDatabase(botName);
     }
 }
