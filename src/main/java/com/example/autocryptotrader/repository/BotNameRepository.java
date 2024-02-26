@@ -1,12 +1,25 @@
 package com.example.autocryptotrader.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BotNameRepository extends JpaRepository<BotNameEntity, Long> {
+public class BotNameRepository {
+    private final JdbcTemplate jdbcTemplate;
 
-    void save(String botName);
+    public BotNameRepository(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
-    boolean existsByBotName(String botName);
+    public void saveBotNameInDatabase(String botName){
+        String sql = "INSERT INTO bots (bot_name) VALUES (?)";
+        jdbcTemplate.update(sql, botName);
+    }
+
+    public boolean existsBotNameInDatabase(String botName){
+        String sql = "SELECT COUNT (*) FROM bots WHERE bot_name = ?";
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, botName);
+        return count > 0;
+    }
 }
+

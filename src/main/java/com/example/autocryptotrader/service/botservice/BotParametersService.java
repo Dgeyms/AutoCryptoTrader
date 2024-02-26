@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BotParametersService {
 
-    void addNameBotInDataBase(BotNameEntity botNameEntity);
+    void addNameBotInDataBase(String botName);
     boolean searchBotInDatabase(String botName);
 }

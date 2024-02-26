@@ -11,12 +11,12 @@ public class BotParametersServiceImpl implements BotParametersService {
         this.botNameRepository = botNameRepository;
     }
     @Override
-    public void addNameBotInDataBase(BotNameEntity botNameEntity) {
-        botNameRepository.save(botNameEntity);
+    public void addNameBotInDataBase(String botName) {
+        botNameRepository.saveBotNameInDatabase(botName);
     }
 
     @Override
     public boolean searchBotInDatabase(String botName) {
-        return botNameRepository.existsByBotName(botName);
+        return botNameRepository.existsBotNameInDatabase(botName);
     }
 }
