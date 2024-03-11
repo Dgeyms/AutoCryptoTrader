@@ -3,6 +3,8 @@ package com.example.autocryptotrader.repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class BotNameRepository {
     private final JdbcTemplate jdbcTemplate;
@@ -20,6 +22,9 @@ public class BotNameRepository {
         String sql = "SELECT COUNT (*) FROM bots WHERE bot_name = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, botName);
         return count > 0;
+    }
+
+    public Optional<Object> findById(Long id) {
     }
 }
 

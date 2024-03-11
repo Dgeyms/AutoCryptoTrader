@@ -1,7 +1,5 @@
 package com.example.autocryptotrader.controller;
 
-import com.example.autocryptotrader.model.BotParameters;
-import com.example.autocryptotrader.repository.PairTokenEntity;
 import com.example.autocryptotrader.service.botservice.BotFormsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
