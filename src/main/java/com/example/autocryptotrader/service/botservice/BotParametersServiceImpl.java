@@ -2,6 +2,7 @@ package com.example.autocryptotrader.service.botservice;
 
 import com.example.autocryptotrader.model.Bot;
 import com.example.autocryptotrader.repository.BotRepository;
+import com.example.autocryptotrader.util.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,8 +18,8 @@ public class BotParametersServiceImpl implements BotParametersService {
     }
 
     @Override
-    public boolean searchBotInDatabase(String botName) {
-        return botRepository.existsBotNameInDatabase(botName);
+    public boolean searchBotInDatabase(Long id) {
+        return botRepository.existsBotNameInDatabase(id);
     }
 
     @Override

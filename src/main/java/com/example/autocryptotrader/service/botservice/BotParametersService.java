@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public interface BotParametersService {
 
     void addNameBotInDataBase(String botName);
-    boolean searchBotInDatabase(String botName);
+    boolean searchBotInDatabase(Long id);
 
     Bot getParametersBotFromDatabase(Long id);
 }
