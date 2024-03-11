@@ -1,6 +1,6 @@
 package com.example.autocryptotrader;
 
-import com.example.autocryptotrader.repository.BotNameRepository;
+import com.example.autocryptotrader.repository.BotRepository;
 import com.example.autocryptotrader.service.botservice.BotParametersServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class BotNameRepositoryTest {
+class BotRepositoryTest {
     @Mock
-    private BotNameRepository botNameRepository;
+    private BotRepository botRepository;
 
     @InjectMocks
     private BotParametersServiceImpl botParametersService;
@@ -23,31 +23,31 @@ class BotNameRepositoryTest {
     @Test
     void testSaveNameBotInDatabase(){
         String nameBot = "ARB/USDT";
-        doNothing().when(botNameRepository).saveBotNameInDatabase(nameBot);
+        doNothing().when(botRepository).saveBotNameInDatabase(nameBot);
 
         botParametersService.addNameBotInDataBase(nameBot);
 
-        verify(botNameRepository, times(1)).saveBotNameInDatabase(nameBot);
+        verify(botRepository, times(1)).saveBotNameInDatabase(nameBot);
     }
 
     @Test
     void testSearchBotInDatabase_ExistingBot() {
         String botName = "TestBot";
-        when(botNameRepository.existsBotNameInDatabase(botName)).thenReturn(true);
+        when(botRepository.existsBotNameInDatabase(botName)).thenReturn(true);
 
         boolean result = botParametersService.searchBotInDatabase(botName);
 
         assertTrue(result);
-        verify(botNameRepository, times(1)).existsBotNameInDatabase(botName);
+        verify(botRepository, times(1)).existsBotNameInDatabase(botName);
     }
     @Test
     void testSearchBotInDatabase_NonExistingBot(){
         String botName = "NonExistingBot";
-        when(botNameRepository.existsBotNameInDatabase(botName)).thenReturn(false);
+        when(botRepository.existsBotNameInDatabase(botName)).thenReturn(false);
 
         boolean result = botParametersService.searchBotInDatabase(botName);
 
         assertFalse(result);
-        verify(botNameRepository, times(1)).existsBotNameInDatabase(botName);
+        verify(botRepository, times(1)).existsBotNameInDatabase(botName);
     }
 }

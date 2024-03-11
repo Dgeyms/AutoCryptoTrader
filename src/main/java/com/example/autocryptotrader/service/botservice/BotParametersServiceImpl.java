@@ -1,30 +1,29 @@
 package com.example.autocryptotrader.service.botservice;
 
 import com.example.autocryptotrader.model.Bot;
-import com.example.autocryptotrader.repository.BotNameRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import com.example.autocryptotrader.repository.BotRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BotParametersServiceImpl implements BotParametersService {
-    private final BotNameRepository botNameRepository;
+    private final BotRepository botRepository;
 
-    public BotParametersServiceImpl(BotNameRepository botNameRepository) {
-        this.botNameRepository = botNameRepository;
+    public BotParametersServiceImpl(BotRepository botRepository) {
+        this.botRepository = botRepository;
     }
     @Override
     public void addNameBotInDataBase(String botName) {
-        botNameRepository.saveBotNameInDatabase(botName);
+        botRepository.saveBotNameInDatabase(botName);
     }
 
     @Override
     public boolean searchBotInDatabase(String botName) {
-        return botNameRepository.existsBotNameInDatabase(botName);
+        return botRepository.existsBotNameInDatabase(botName);
     }
 
     @Override
     public Bot getParametersBotFromDatabase(Long id) {
-        return botNameRepository.findById(id)
+        return botRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Bot not found with id " + id));
     }
 }
