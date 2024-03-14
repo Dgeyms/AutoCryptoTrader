@@ -3,7 +3,9 @@ package com.example.autocryptotrader.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -16,18 +18,23 @@ public class Bot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 3, message = "Name must be at least 3 characters long")
     private String nameBot;
 
-    private List<String> nameTokenPair; // from database
-    private TypeTradingDirection typeTradingDirection; // направление торговли
-    private int creditLeverage;
-    private double percentTakeProfit;
-    private double dollarOrderVolume;
+    @NotBlank
+    private String nameTokenPair;
 
-    public enum TypeTradingDirection {
-        LONG, SHORT
-    }
+    @NotBlank
+    private String typeTradingDirection; // direction of trade
+
+    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
+    private int creditLeverage;
+
+    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
+    private double percentTakeProfit; // profit for a deal
+
+    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
+    private double dollarOrderVolume;
 
 }
