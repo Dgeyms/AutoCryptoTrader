@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BotParametersService {
 
-    void addNameBotInDataBase(String botName);
+    void addBotInDataBase(Bot bot);
     boolean searchBotInDatabase(Long id);
 
     Bot getParametersBotFromDatabase(Long id);

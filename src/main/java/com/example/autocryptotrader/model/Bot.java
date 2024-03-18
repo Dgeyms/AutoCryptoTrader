@@ -37,4 +37,7 @@ public class Bot {
     @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
     private double dollarOrderVolume;
 
+    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
+    private Long clientId;
+
 }

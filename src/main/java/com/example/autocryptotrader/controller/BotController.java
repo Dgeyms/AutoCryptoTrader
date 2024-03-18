@@ -22,16 +22,15 @@ public class BotController {
         return botParametersServiceImpl.getParametersBotFromDatabase(id);
     }
 
-    @PostMapping("/parametersBot")
-    public String receiveBotParameters(Model model, @Valid @RequestParam Bot bot) {
-        if (true == searchBotInDatabase(bot.getId())) {
+    @PostMapping("/createBot")
+    public String receiveBotParameters(Model model, @Valid @ModelAttribute Bot bot) {
+        if (searchBotInDatabase(bot.getClientId())) {
             return "Bot with id: " + bot.getId() + " OK in database";
         } else {
-            Bot bot = new Bot(bot);
             model.addAttribute("bot", bot);
-            botParametersServiceImpl.addNameBotInDataBase(bot);
+            botParametersServiceImpl.addBotInDataBase(bot);
             model.addAttribute("message", "Bot successfully added to the database");
-            return "New bot with name " + botName + " CREATE in database"; // Замените "someView" на имя представления, к которому вы хотите перенаправиться
+            return "New bot with name " + bot.getNameBot() + " CREATE in database";
         }
     }
 

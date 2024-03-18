@@ -13,8 +13,8 @@ public class BotParametersServiceImpl implements BotParametersService {
         this.botRepository = botRepository;
     }
     @Override
-    public void addNameBotInDataBase(String botName) {
-        botRepository.saveBotNameInDatabase(botName);
+    public void addBotInDataBase(Bot bot) {
+        botRepository.save(bot);
     }
 
     @Override

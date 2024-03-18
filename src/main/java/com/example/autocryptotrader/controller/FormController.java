@@ -31,6 +31,6 @@ public class FormController {
         }
         model.addAttribute("tokenPair", pairTokenList);
         model.addAttribute("botParametersModel", new BotParameters());
-        return "parametersBot";
+        return "InfoAboutBot";
     }
 }
