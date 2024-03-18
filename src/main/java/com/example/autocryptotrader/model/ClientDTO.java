@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Client {
+public class ClientDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,4 +13,10 @@ public class Client {
 
     @Column(name = "name_client")
     private String nameClient;
+
+    @Column(name = "email_client")
+    private String emailClient;
+
+    @Column(name = "password_client")
+    private String passwordClient;
 }
