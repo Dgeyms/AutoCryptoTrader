@@ -1,6 +1,6 @@
 package com.example.autocryptotrader.controller;
 
-import com.example.autocryptotrader.model.Bot;
+import com.example.autocryptotrader.model.BotDTO;
 import com.example.autocryptotrader.service.botservice.BotParametersServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
@@ -18,12 +18,12 @@ public class BotController {
     }
 
     @GetMapping("/bots/{id}")
-    public Bot getBots(@PathVariable Long id) {
+    public BotDTO getBots(@PathVariable Long id) {
         return botParametersServiceImpl.getParametersBotFromDatabase(id);
     }
 
     @PostMapping("/createBot")
-    public String receiveBotParameters(Model model, @Valid @ModelAttribute Bot bot) {
+    public String receiveBotParameters(Model model, @Valid @ModelAttribute BotDTO bot) {
         if (searchBotInDatabase(bot.getClientId())) {
             return "Bot with id: " + bot.getId() + " OK in database";
         } else {
