@@ -1,5 +1,6 @@
-package com.example.autocryptotrader.model;
+package com.example.autocryptotrader.repository;
 
+import com.example.autocryptotrader.model.BotDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,15 +9,24 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Component;
 
-@Component
 @Data
-public class BotDTO {
-    @Pattern(regexp = "^[0-19]+$", message = "Must contain only digits")
-    private Long clientId;
+@Entity(name = "bots")
+public class BotEntity {
 
-    @Pattern(regexp = "^[0-19]+$", message = "Must contain only digits")
+    public BotEntity(BotDTO botDTO) {
+        this.botId = botDTO.getBotId();
+        this.nameBot = botDTO.getNameBot();
+        this.nameTokenPair = botDTO.getNameTokenPair();
+        this.typeTradingDirection = botDTO.getTypeTradingDirection();
+        this.creditLeverage = botDTO.getCreditLeverage();
+        this.percentTakeProfit = botDTO.getPercentTakeProfit();
+        this.dollarOrderVolume = botDTO.getDollarOrderVolume();
+        this.clientId = botDTO.getClientId();
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long botId;
 
     @NotBlank
@@ -38,5 +48,6 @@ public class BotDTO {
     @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
     private double dollarOrderVolume;
 
-
+    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
+    private Long clientId;
 }

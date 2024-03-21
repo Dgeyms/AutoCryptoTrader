@@ -1,6 +1,7 @@
 package com.example.autocryptotrader.controller;
 
 import com.example.autocryptotrader.model.BotDTO;
+import com.example.autocryptotrader.repository.BotEntity;
 import com.example.autocryptotrader.service.botservice.BotParametersServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
@@ -23,19 +24,19 @@ public class BotController {
     }
 
     @PostMapping("/createBot")
-    public String receiveBotParameters(Model model, @Valid @ModelAttribute BotDTO bot) {
-        if (searchBotInDatabase(bot.getClientId())) {
-            return "Bot with id: " + bot.getId() + " OK in database";
+    public String receiveBotParameters(Model model, @Valid @ModelAttribute BotDTO botDTO) {
+        if (searchBotInDatabase(botDTO.getClientId(), botDTO.getNameBot(), botDTO.getTypeTradingDirection())) {
+            return "Bot with name: " + botDTO.getNameBot() + " OK in database";
         } else {
-            model.addAttribute("bot", bot);
-            botParametersServiceImpl.addBotInDataBase(bot);
+            model.addAttribute("bot", botDTO);
+            BotEntity botEntity = new BotEntity(botDTO);
+            botParametersServiceImpl.addBotInDataBase(botEntity);
             model.addAttribute("message", "Bot successfully added to the database");
             return "New bot with name " + bot.getNameBot() + " CREATE in database";
         }
     }
 
-    private Boolean searchBotInDatabase(Long id) {
+    private Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
         return botParametersServiceImpl.searchBotInDatabase(id);
     }
 }
-// проверка git (сообщение принято)
