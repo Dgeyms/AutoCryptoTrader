@@ -13,15 +13,16 @@ public class BotParametersServiceImpl implements BotParametersService {
     public BotParametersServiceImpl(BotRepository botRepository) {
         this.botRepository = botRepository;
     }
+
     @Override
     public Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
-        return botRepository.existsBotNameInDatabase(clientId, nameBot, typeTradingDirection);    }
-
-    @Override
-    public void addBotInDataBase(BotEntity ) {
-        botRepository.save(bot);
+        return botRepository.existsBotNameInDatabase(clientId, nameBot, typeTradingDirection);
     }
 
+    @Override
+    public void addBotInDataBase(BotEntity botEntity) {
+        botRepository.save(botEntity);
+    }
 
 
     @Override
