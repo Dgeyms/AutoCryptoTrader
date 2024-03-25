@@ -7,10 +7,10 @@ import com.example.autocryptotrader.util.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BotParametersServiceImpl implements BotParametersService {
+public class BotServiceImpl implements BotService {
     private final BotRepository botRepository;
 
-    public BotParametersServiceImpl(BotRepository botRepository) {
+    public BotServiceImpl(BotRepository botRepository) {
         this.botRepository = botRepository;
     }
 

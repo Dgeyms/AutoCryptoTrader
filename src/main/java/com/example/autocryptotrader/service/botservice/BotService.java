@@ -6,7 +6,7 @@ import com.example.autocryptotrader.repository.BotEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface BotParametersService {
+public interface BotService {
     Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection);
 
     void addBotInDataBase(BotEntity botEntity);
