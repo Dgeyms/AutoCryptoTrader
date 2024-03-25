@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 
 @WebMvcTest(BotController.class)
-public class BotControllerTest {
+public class BotDTOControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

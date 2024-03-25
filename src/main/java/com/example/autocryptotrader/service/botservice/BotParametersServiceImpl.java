@@ -1,26 +1,33 @@
 package com.example.autocryptotrader.service.botservice;
 
-import com.example.autocryptotrader.repository.BotNameRepository;
-import com.example.autocryptotrader.repository.PairTokenEntity;
-import com.example.autocryptotrader.repository.TokenPairRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.autocryptotrader.model.BotDTO;
+import com.example.autocryptotrader.repository.BotEntity;
+import com.example.autocryptotrader.repository.BotRepository;
+import com.example.autocryptotrader.util.NotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class BotParametersServiceImpl implements BotParametersService {
-    private final TokenPairRepository tokenPairRepository;
-    private final BotNameRepository botNameRepository;
-    @Autowired
-    public BotParametersServiceImpl(TokenPairRepository tokenPairRepository, BotNameRepository botNameRepository) {
-        this.tokenPairRepository = tokenPairRepository;
-        this.botNameRepository = botNameRepository;
+    private final BotRepository botRepository;
+
+    public BotParametersServiceImpl(BotRepository botRepository) {
+        this.botRepository = botRepository;
+    }
+
+    @Override
+    public Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
+        return botRepository.existsBotNameInDatabase(clientId, nameBot, typeTradingDirection);
+    }
+
+    @Override
+    public void addBotInDataBase(BotEntity botEntity) {
+        botRepository.save(botEntity);
     }
 
 
     @Override
-    public void addNameBotInDataBase(String botName){
-        botNameRepository.save(botName);
-    };
+    public BotDTO getParametersBotFromDatabase(Long id) {
+        return botRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Bot not found with id " + id));
+    }
 }

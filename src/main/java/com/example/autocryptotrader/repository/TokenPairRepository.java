@@ -9,7 +9,7 @@ import java.util.List;
 public interface TokenPairRepository extends JpaRepository<PairTokenEntity, Long> {
 
     // Если вам нужны только имена токенов
-   @Query("SELECT p.nameTokenPair FROM PairTokenEntity")
-   List<String> findAllTokenNames();
+    @Query("SELECT t.nameTokenPair FROM PairTokenEntity t")
+    List<String> findAllTokenNames();
 
 }

@@ -1,13 +1,16 @@
 package com.example.autocryptotrader.service.botservice;
 
 
-import com.example.autocryptotrader.repository.PairTokenEntity;
+import com.example.autocryptotrader.model.BotDTO;
+import com.example.autocryptotrader.repository.BotEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
 public interface BotParametersService {
-    List<String> getPairTokenFromDataBase();
+    Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection);
 
-    void addNameBotInDataBase(String botName);
+    void addBotInDataBase(BotEntity botEntity);
+
+    BotDTO getParametersBotFromDatabase(Long id);
+
 }

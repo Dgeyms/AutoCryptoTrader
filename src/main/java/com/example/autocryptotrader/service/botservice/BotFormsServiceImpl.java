@@ -1,5 +1,6 @@
 package com.example.autocryptotrader.service.botservice;
 
+import com.example.autocryptotrader.repository.PairTokenEntity;
 import com.example.autocryptotrader.repository.TokenPairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

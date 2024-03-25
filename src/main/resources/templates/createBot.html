@@ -6,54 +6,11 @@
 </head>
 
 <body>
-    <h1>Create bot</h1>
-    <!--
-    <form method="POST" th.object="${bot}"> Этот атрибут th:object указывает Thymeleaf, что данные формы должны быть связаны с объектом,
-    который находится в модели под именем "bot"
-        <div th:each="botParameters : ${botParametersList}">
-            <div>
-                <p>Name: <span th:text="${botParameters.nameBot}"></span></p>
-                <input type="text" th:field="*{nameBot}" />
-
-                 pairToken parameters
-                <p>Trading Direction: <span th:text="${botParameters.typeTradingDirection}"></span></p>
-                <select th:field="*{typeTradingDirection}">
-                    <option th:each="direction : ${T(com.example.autocryptotrader.model.BotParameters$TypeTradingDirection).values()}"
-                            th:value="${direction}" th:text="${direction}"></option>
-                </select>
-
-                <p>Token Pair: <span th:text="${botParameters.tokenPair}"></span></p>
-                <p>Credit Leverage: <span th:text="${botParameters.creditLeverage}"></span></p>
-                <p>Percent Take Profit: <span th:text="${botParameters.percentTakeProfit}"></span></p>
-                <p>Dollar Order Volume: <span th:text="${botParameters.dollarOrderVolume}"></span></p>
-                <hr/>
-            </div>
-        </div>
-        <button type="submit">Submit</button>
+    <h3>Create bot</h3>
+    <p></p>
+    <form action="/bot/parametersBot" method="POST">
+        <input type="text" th:name="botName">
+        <input type="submit" value="Submit">
     </form>
-    -->
-    <form method="GET" th.object="${botParametersModel}"><!--Этот атрибут th:object указывает Thymeleaf, что данные формы должны быть связаны с объектом,
-    который находится в модели под именем "tokenPair"-->
-
-                <!-- pairToken parameters -->
-                <p>Trading pair tokens: <span th:text="${botParametersModel.nameTokenPair}"></span></p>
-                <select th:field="*{nameTokenPair}">
-                    <option th:each="pairToken : ${(pairTokenList}"
-                            th:text="${pairToken}" th:value="${pairToken}"></option>
-                </select>
-    </form>
-    <!--
-    <form>
-        <div class="grid">
-            <div class="parameters-bot" id="parameters">
-                <h3>Parameters bot</h3>
-                <div th:each="botParameters : ${botParametersList}">
-                    <input th:field="*{botParametersList}" type="checkbox" th:value="${botParameters.nameBot}"/>
-                    <span th:text="${botParameters.getNameBot()}">botParameter</span><br/>
-                </div>
-            </div>
-        </div>
-
-    </form>-->
 </body>
 </html>
