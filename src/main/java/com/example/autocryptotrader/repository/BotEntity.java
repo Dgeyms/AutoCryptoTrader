@@ -15,7 +15,6 @@ import org.springframework.data.annotation.Id;
 public class BotEntity {
 
     public BotEntity(BotDTO botDTO) {
-        this.botId = botDTO.getBotId();
         this.nameBot = botDTO.getNameBot();
         this.nameTokenPair = botDTO.getNameTokenPair();
         this.typeTradingDirection = botDTO.getTypeTradingDirection();

@@ -28,15 +28,14 @@ public class BotController {
         if (searchBotInDatabase(botDTO.getClientId(), botDTO.getNameBot(), botDTO.getTypeTradingDirection())) {
             return "Bot with name: " + botDTO.getNameBot() + " OK in database";
         } else {
-            model.addAttribute("bot", botDTO);
             BotEntity botEntity = new BotEntity(botDTO);
             botParametersServiceImpl.addBotInDataBase(botEntity);
-            model.addAttribute("message", "Bot successfully added to the database");
-            return "New bot with name " + bot.getNameBot() + " CREATE in database";
+            //model.addAttribute("message", "Bot successfully added to the database");
+            return "New bot with name " + botDTO.getNameBot() + " CREATE in database";
         }
     }
 
     private Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
-        return botParametersServiceImpl.searchBotInDatabase(id);
+        return botParametersServiceImpl.searchBotInDatabase(clientId, nameBot, typeTradingDirection);
     }
 }

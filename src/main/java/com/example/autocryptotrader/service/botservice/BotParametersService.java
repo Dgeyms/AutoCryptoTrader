@@ -1,14 +1,16 @@
 package com.example.autocryptotrader.service.botservice;
 
 
-import com.example.autocryptotrader.model.Bot;
+import com.example.autocryptotrader.model.BotDTO;
+import com.example.autocryptotrader.repository.BotEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface BotParametersService {
+    Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection);
 
-    void addBotInDataBase(Bot bot);
-    boolean searchBotInDatabase(Long id);
+    void addBotInDataBase(BotEntity botEntity);
 
-    Bot getParametersBotFromDatabase(Long id);
+    BotDTO getParametersBotFromDatabase(Long id);
+
 }
