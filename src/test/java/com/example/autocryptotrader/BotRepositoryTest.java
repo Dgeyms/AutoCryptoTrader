@@ -1,5 +1,6 @@
 package com.example.autocryptotrader;
 
+import com.example.autocryptotrader.repository.BotEntity;
 import com.example.autocryptotrader.repository.BotRepository;
 import com.example.autocryptotrader.service.botservice.BotParametersServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -8,12 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class BotDTORepositoryTest {
+class BotRepositoryTest {
     @Mock
     private BotRepository botRepository;
 
@@ -21,13 +21,19 @@ class BotDTORepositoryTest {
     private BotParametersServiceImpl botParametersService;
 
     @Test
-    void testSaveNameBotInDatabase(){
+    void testSearchBotInDatabase(){
+        Long clientId = 2309L;
         String nameBot = "ARB/USDT";
-        doNothing().when(botRepository).saveBotNameInDatabase(nameBot);
+        String typeTradingDirection = "Long";
+        boolean expectedResult = true;
+        when(botParametersService.searchBotInDatabase(clientId, nameBot, typeTradingDirection))
+                .thenReturn(expectedResult);
 
-        botParametersService.addNameBotInDataBase(nameBot);
+        //Call the tested method
+        boolean actualResult = botParametersService.searchBotInDatabase(clientId, nameBot, typeTradingDirection);
 
-        verify(botRepository, times(1)).saveBotNameInDatabase(nameBot);
+        // We check that the result corresponds to the expected value
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
