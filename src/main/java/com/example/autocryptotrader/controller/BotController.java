@@ -2,7 +2,7 @@ package com.example.autocryptotrader.controller;
 
 import com.example.autocryptotrader.model.BotDTO;
 import com.example.autocryptotrader.repository.BotEntity;
-import com.example.autocryptotrader.service.botservice.BotParametersServiceImpl;
+import com.example.autocryptotrader.service.botservice.BotServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RequestMapping("/bot")
 public class BotController {
-    private final BotParametersServiceImpl botParametersServiceImpl;
+    private final BotServiceImpl botServiceImpl;
 
-    public BotController(BotParametersServiceImpl botParametersServiceImpl) {
-        this.botParametersServiceImpl = botParametersServiceImpl;
+    public BotController(BotServiceImpl botServiceImpl) {
+        this.botServiceImpl = botServiceImpl;
     }
 
     @GetMapping("/bots/{id}")
     public BotDTO getBots(@PathVariable Long id) {
-        return botParametersServiceImpl.getParametersBotFromDatabase(id);
+        return botServiceImpl.getParametersBotFromDatabase(id);
     }
 
     @PostMapping("/createBot")
@@ -29,13 +29,13 @@ public class BotController {
             return "Bot with name: " + botDTO.getNameBot() + " OK in database";
         } else {
             BotEntity botEntity = new BotEntity(botDTO);
-            botParametersServiceImpl.addBotInDataBase(botEntity);
+            botServiceImpl.addBotInDataBase(botEntity);
             //model.addAttribute("message", "Bot successfully added to the database");
             return "New bot with name " + botDTO.getNameBot() + " CREATE in database";
         }
     }
 
     private Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
-        return botParametersServiceImpl.searchBotInDatabase(clientId, nameBot, typeTradingDirection);
+        return botServiceImpl.searchBotInDatabase(clientId, nameBot, typeTradingDirection);
     }
 }
