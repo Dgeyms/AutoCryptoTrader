@@ -4,14 +4,17 @@ import com.example.autocryptotrader.model.BotDTO;
 import com.example.autocryptotrader.repository.BotEntity;
 import com.example.autocryptotrader.repository.BotRepository;
 import com.example.autocryptotrader.util.NotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BotServiceImpl implements BotService {
     private final BotRepository botRepository;
+    private final ModelMapper modelMapper;
 
     public BotServiceImpl(BotRepository botRepository) {
         this.botRepository = botRepository;
+        this.modelMapper = new ModelMapper();
     }
 
     @Override
