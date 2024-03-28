@@ -27,7 +27,8 @@ public class BotServiceImpl implements BotService {
 
     @Override
     public BotDTO getParametersBotFromDatabase(Long id) {
-        return botRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Bot not found with id " + id));
+        BotEntity botEntity = botRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Bot not found"));
+        return modelMapper.map(botEntity, BotDTO.class);
     }
 }
