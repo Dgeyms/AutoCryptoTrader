@@ -7,10 +7,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface BotService {
-    Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection);
+    Boolean existBotInDatabase(Long clientId, String nameBot, String typeTradingDirection);
 
     void addBotInDataBase(BotEntity botEntity);
 
     BotDTO getParametersBotFromDatabase(Long id);
 
+    Boolean existBotId(Long id);
+
+    void deleteBotFromDataBase(Long id);
 }

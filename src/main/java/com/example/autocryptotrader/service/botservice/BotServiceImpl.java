@@ -17,8 +17,7 @@ public class BotServiceImpl implements BotService {
         this.modelMapper = new ModelMapper();
     }
 
-    @Override
-    public Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
+    public Boolean existBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
         return botRepository.existsBotNameInDatabase(clientId, nameBot, typeTradingDirection);
     }
 
@@ -33,5 +32,15 @@ public class BotServiceImpl implements BotService {
         BotEntity botEntity = botRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Bot not found"));
         return modelMapper.map(botEntity, BotDTO.class);
+    }
+
+    @Override
+    public Boolean existBotId(Long id) {
+        return botRepository.existsById(id);
+    }
+
+    @Override
+    public void deleteBotFromDataBase(Long id) {
+        botRepository.deleteById(id);
     }
 }

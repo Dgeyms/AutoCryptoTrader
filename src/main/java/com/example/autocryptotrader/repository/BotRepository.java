@@ -1,6 +1,5 @@
 package com.example.autocryptotrader.repository;
 
-import com.example.autocryptotrader.model.BotDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

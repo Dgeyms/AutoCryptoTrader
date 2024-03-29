@@ -24,7 +24,7 @@ public class BotController {
         BotDTO botDTO = botServiceImpl.getParametersBotFromDatabase(id);
         if (botDTO != null) {
             return ResponseEntity.ok(botDTO);
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -41,7 +41,21 @@ public class BotController {
         }
     }
 
+    @DeleteMapping("/bot/deleteBot/{id}")
+    public String deleteBotFromDatabase(@PathVariable Long id) {
+        if (!existBotId(id)) {
+            return "Bot with id " + id + " not found";
+        } else {
+            botServiceImpl.deleteBotFromDataBase(id);
+        }
+        return "Bot with id " + id + " deleted";
+    }
+
     private Boolean searchBotInDatabase(Long clientId, String nameBot, String typeTradingDirection) {
-        return botServiceImpl.searchBotInDatabase(clientId, nameBot, typeTradingDirection);
+        return botServiceImpl.existBotInDatabase(clientId, nameBot, typeTradingDirection);
+    }
+
+    private Boolean existBotId(Long id) {
+        return botServiceImpl.existBotId(id);
     }
 }
