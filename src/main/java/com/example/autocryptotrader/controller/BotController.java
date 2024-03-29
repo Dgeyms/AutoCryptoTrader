@@ -4,6 +4,7 @@ import com.example.autocryptotrader.model.BotDTO;
 import com.example.autocryptotrader.repository.BotEntity;
 import com.example.autocryptotrader.service.botservice.BotServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,14 @@ public class BotController {
         this.botServiceImpl = botServiceImpl;
     }
 
-    @GetMapping("/bots/{id}")
-    public BotDTO getBots(@PathVariable Long id) {
-        return botServiceImpl.getParametersBotFromDatabase(id);
+    @GetMapping("/bot/{id}")
+    public ResponseEntity<BotDTO> getBot(@PathVariable Long id) {
+        BotDTO botDTO = botServiceImpl.getParametersBotFromDatabase(id);
+        if (botDTO != null) {
+            return ResponseEntity.ok(botDTO);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/createBot")
