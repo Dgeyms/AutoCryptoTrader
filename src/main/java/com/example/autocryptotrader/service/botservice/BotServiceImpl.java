@@ -26,7 +26,6 @@ public class BotServiceImpl implements BotService {
         botRepository.save(botEntity);
     }
 
-
     @Override
     public BotDTO getParametersBotFromDatabase(Long id) {
         BotEntity botEntity = botRepository.findById(id)
@@ -35,12 +34,19 @@ public class BotServiceImpl implements BotService {
     }
 
     @Override
-    public Boolean existBotId(Long id) {
-        return botRepository.existsById(id);
+    public void updateBotFromDatabase(BotEntity botEntity) {
+        botRepository.save(botEntity);
     }
 
     @Override
     public void deleteBotFromDataBase(Long id) {
         botRepository.deleteById(id);
     }
+
+    @Override
+    public Boolean existBotId(Long id) {
+        return botRepository.existsById(id);
+    }
+
+
 }

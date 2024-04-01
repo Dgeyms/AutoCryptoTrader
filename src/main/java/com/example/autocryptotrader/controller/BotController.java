@@ -41,6 +41,17 @@ public class BotController {
         }
     }
 
+    @PutMapping("/bot/updateBot/{id}")
+        public String updateBot(@Valid @ModelAttribute BotDTO botDTO){
+        if(!existBotId(botDTO.getBotId())){
+            return "Bot with id " + botDTO.getBotId() + " not found";
+        }else {
+            BotEntity botEntity = new BotEntity(botDTO);
+            botServiceImpl.updateBotFromDatabase(botEntity);
+        }
+        return "Bot with id " + botDTO.getBotId() + " updated";
+    }
+
     @DeleteMapping("/bot/deleteBot/{id}")
     public String deleteBotFromDatabase(@PathVariable Long id) {
         if (!existBotId(id)) {

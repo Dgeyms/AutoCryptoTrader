@@ -16,4 +16,6 @@ public interface BotService {
     Boolean existBotId(Long id);
 
     void deleteBotFromDataBase(Long id);
+
+    void updateBotFromDatabase(BotEntity botEntity);
 }
