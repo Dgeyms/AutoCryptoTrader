@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
@@ -29,14 +30,6 @@ public class BotDTO {
     @NotBlank
     private String typeTradingDirection; // direction of trade
 
-    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
-    private int creditLeverage;
-
-    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
-    private double percentTakeProfit; // profit for a deal
-
-    @Pattern(regexp = "^[0-9]+$", message = "Must contain only digits")
-    private double dollarOrderVolume;
-
+    private int timePeriod;
 
 }
