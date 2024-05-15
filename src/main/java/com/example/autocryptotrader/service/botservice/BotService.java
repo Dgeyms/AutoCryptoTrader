@@ -1,7 +1,6 @@
 package com.example.autocryptotrader.service.botservice;
 
 
-import com.example.autocryptotrader.model.BotDTO;
 import com.example.autocryptotrader.repository.BotEntity;
 import org.springframework.stereotype.Service;
 

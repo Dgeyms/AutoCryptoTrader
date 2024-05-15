@@ -1,6 +1,5 @@
 package com.example.autocryptotrader.controller;
 
-import com.example.autocryptotrader.model.BotDTO;
 import com.example.autocryptotrader.repository.BotEntity;
 import com.example.autocryptotrader.service.botservice.BotServiceImpl;
 import com.example.autocryptotrader.service.botservice.QuoteServiceImpl;

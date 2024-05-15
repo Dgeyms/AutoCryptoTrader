@@ -1,6 +1,5 @@
 package com.example.autocryptotrader.repository;
 
-import com.example.autocryptotrader.model.BotDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
