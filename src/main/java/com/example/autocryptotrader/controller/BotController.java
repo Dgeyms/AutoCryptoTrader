@@ -3,20 +3,27 @@ package com.example.autocryptotrader.controller;
 import com.example.autocryptotrader.model.BotDTO;
 import com.example.autocryptotrader.repository.BotEntity;
 import com.example.autocryptotrader.service.botservice.BotServiceImpl;
+import com.example.autocryptotrader.service.botservice.QuoteServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Validated
 @RequestMapping("/bot")
 public class BotController {
     private final BotServiceImpl botServiceImpl;
+    private final QuoteGenerator quoteGenerator;
+    private final QuoteServiceImpl quoteService;
 
-    public BotController(BotServiceImpl botServiceImpl) {
+    public BotController(BotServiceImpl botServiceImpl, QuoteGenerator quoteGenerator, QuoteServiceImpl quoteService) {
         this.botServiceImpl = botServiceImpl;
+        this.quoteGenerator = quoteGenerator;
+        this.quoteService = quoteService;
     }
 
     @GetMapping("/bot/{id}")
@@ -36,16 +43,17 @@ public class BotController {
         } else {
             BotEntity botEntity = new BotEntity(botDTO);
             botServiceImpl.addBotInDataBase(botEntity);
-            //model.addAttribute("message", "Bot successfully added to the database");
+            List<Double> generatorListQuote = quoteGenerator.generateData(); // generator quote bot
+            // я тут, сделать сохранение котировок в базу данных
             return "New bot with name " + botDTO.getNameBot() + " CREATE in database";
         }
     }
 
     @PutMapping("/bot/updateBot/{id}")
-        public String updateBot(@Valid @ModelAttribute BotDTO botDTO){
-        if(!existBotId(botDTO.getBotId())){
+    public String updateBot(@Valid @ModelAttribute BotDTO botDTO) {
+        if (!existBotId(botDTO.getBotId())) {
             return "Bot with id " + botDTO.getBotId() + " not found";
-        }else {
+        } else {
             BotEntity botEntity = new BotEntity(botDTO);
             botServiceImpl.updateBotFromDatabase(botEntity);
         }
